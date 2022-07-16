@@ -1,5 +1,6 @@
 package com.cshka.pizzastore_20220710
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.PagerAdapter
@@ -18,4 +19,9 @@ class MainActivity : AppCompatActivity() {
 
         mainTabLayout.setupWithViewPager(mainViewPager)
     }
+
+//    onActivityResult 함수 override는 onCreate 밖에
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//
+//    }
 }
