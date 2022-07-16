@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cshka.pizzastore_20220710">
 
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <!--적어서 권한 받기
-    사용자에게 권한 물어서 받기-->
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--
+적어서 권한 받기
+    사용자에게 권한 물어서 받기
+    -->
     <!-- 예전엔 인터넷 사용 권한 넣었었음 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,19 +20,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PizzaStore_20220710"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".DetailSotreActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DetailSotreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
