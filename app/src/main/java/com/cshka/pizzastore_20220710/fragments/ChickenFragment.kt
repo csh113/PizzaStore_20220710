@@ -11,7 +11,6 @@ import com.cshka.pizzastore_20220710.R
 import com.cshka.pizzastore_20220710.StoreData
 import com.cshka.pizzastore_20220710.adapters.StoreListAdapter
 import kotlinx.android.synthetic.main.fragment_chicken.*
-import kotlinx.android.synthetic.main.fragment_pizza.*
 
 class ChickenFragment : Fragment() {
     lateinit var mStoreListAdapter: StoreListAdapter
@@ -27,6 +26,8 @@ class ChickenFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        mList.clear()
 
         mList.add( StoreData("교촌", 4.5, "1588-5588",
             "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FnkQca%2FbtqwVT4rrZo%2FymhFqW9uRbzrmZTxUU1QC1%2Fimg.jpg") )
