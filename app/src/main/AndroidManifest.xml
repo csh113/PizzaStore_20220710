@@ -4,6 +4,18 @@
     package="com.cshka.pizzastore_20220710">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--
+    추가로 Kotlin에 코드 추가한다.
+    [물어보는 분기 코드 작성 - 복잡함 -Lib사용]
+    코드 로직 : 1) 이미 권한을 획득한 상태인지? 확인
+               2) 획득 기취득 시 -> 전화 걸기 등 원하는 기능 실행
+               3) 권한 거절 되어 있다면 => 토스트로 안내문구 주는 등의 코드
+               4) 아직 설정이 안되어있다면 => 사용자에 물어보는 코드
+    라이브러리를 이용하면, 비교적 쉽게 코딩 가능
+    20220717 일
+    -->
+
     <!--
 적어서 권한 받기
     사용자에게 권한 물어서 받기

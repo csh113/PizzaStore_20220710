@@ -56,4 +56,9 @@ dependencies {
 //    RatingBar
 //    compile 'com.github.ome450901:SimpleRatingBar:LATEST_VERSION'
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
+
+//    TedPermission
+    // Normal
+//    implementation 'io.github.ParkSangGwon:tedpermission-normal:x.y.z'
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
 }

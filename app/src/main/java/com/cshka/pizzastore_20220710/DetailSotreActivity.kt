@@ -4,11 +4,16 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.normal.TedPermission
+import com.willy.ratingbar.ScaleRatingBar
 import kotlinx.android.synthetic.main.activity_detail_sotre.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.phoneNumTxt
 import kotlinx.android.synthetic.main.store_list_item.*
 import kotlinx.android.synthetic.main.store_list_item.scoreTxt
+import java.util.jar.Manifest
 import kotlin.math.min
 
 class DetailSotreActivity : AppCompatActivity() {
@@ -18,21 +23,57 @@ class DetailSotreActivity : AppCompatActivity() {
 
 //        Intent의 첨부된 데이터 받아오는 코드
         val storeData = intent.getSerializableExtra("storeData") as StoreData
+//        val storeRatingBar = row.findViewById<ScaleRatingBar>(R.id.storeRatingBar) 필요없음
 
 //        받아온 데이터를 참조해서 UI에 반영
         storeNameTxt.text = storeData.name
-        scoreTxt.text = storeData.score.toString()
+        scoreTxt.text = "(${storeData.score.toString()})"
         phoneNumTxt.text = storeData.phoneNum
+        detailRatingBar.rating = storeData.score.toFloat()
+
 
 //        주문하기 버튼을 눌렀을 때 - Dial
         callBtn.setOnClickListener {
-            var myUri = Uri.parse("tel:${phoneNumTxt.text}")
-//            1. 주문하기 - Dial
-            val myIntent = Intent( Intent.ACTION_DIAL, myUri)
+//            TedPermission 추가
+            val pl = object : PermissionListener { //object 꼭 필수로 추가할 함수가 있음. pl : Permission Listener
+//                권한 획득 성공시 진행 코드
+                override fun onPermissionGranted() {
+                    var myUri = Uri.parse("tel:${phoneNumTxt.text}")
+                    val myIntent = Intent( Intent.ACTION_CALL, myUri)
+                    startActivity(myIntent)
+                }
 
-/*//        2. 주문하기 버튼을 눌렀을 때 -> 전화걸기 까지 - Call
-            val myIntent = Intent( Intent.ACTION_CALL, myUri)
-//            에러남 - 권한 설정 문제 [close App] - 사용자의 허가 필요*/
+//                권한 획득 실패시 진행 코드
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                    Toast.makeText(this@DetailSotreActivity, "권한이 없습니다.", Toast.LENGTH_SHORT).show()
+//                  Deny한 경우 - 설정에서 따로 변경해야 함
+                }
+                /* 유의사항
+                간단하게 권한을 물어보고 싶을때 사용
+
+                일부 권한의 경우, 추가 코드 작업 필요함.
+                앱을 사용할때, 여러개의 권한이 필요하다고 해서, 앱 시작점 (SplashActivity)에서 몰아서 권한을 물어보는 코드는 지양하자.
+
+                각각의 권한이 실제로 필요한 순간에 권한을 요청하자.
+                * GPS등 일부 권한의 경우 추가 코드 작업 필요
+                * SplashActivity에서 몰아서 권한 물어보기 X - 안드로이드 오류의 주원인
+                * 각각의 권한이 실제 필요 시에 권한 요청하기
+                * */
+
+
+            }
+
+            TedPermission.create()
+                .setPermissionListener(pl)
+                .setPermissions(android.Manifest.permission.CALL_PHONE)
+                .check()
+
+//            1. 주문하기 - Dial
+//            val myIntent = Intent( Intent.ACTION_DIAL, myUri)
+
+//        2. 주문하기 버튼을 눌렀을 때 -> 전화걸기 까지 - Call
+//            val myIntent = Intent( Intent.ACTION_CALL, myUri)
+//            에러남 - 권한 설정 문제 [close App] - 사용자의 허가 필요
 
 //            3. 문자 전송
 
@@ -65,7 +106,6 @@ class DetailSotreActivity : AppCompatActivity() {
             myIntent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
             startActivityForResult(myIntent, REQ_CODE_GALLERY)*/
 
-           startActivity(myIntent)
         }
 
     }
