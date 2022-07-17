@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 class ProfileFragment : Fragment() {
 
     val REQ_FOR_NICKNAME = 1000
-    val REQ_FOR_PHONENUM = 2000
+    val REQ_FOR_PHONENUM = 1001
 
     override fun onCreateView(
         inflater: LayoutInflater,

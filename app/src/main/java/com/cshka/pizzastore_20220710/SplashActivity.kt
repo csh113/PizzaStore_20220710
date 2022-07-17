@@ -15,7 +15,8 @@ class SplashActivity : AppCompatActivity() {
         val myHandler = Handler(Looper.getMainLooper()) //Handler를 변수로 - duplicated 된 것 없애는 방법 Looper.getMainLooper()
 //        백엔드에서 할일
 
-        myHandler.postDelayed({
+        myHandler.postDelayed(
+            {
 //            백엔드 이후에 할 일
 //            예시 : 서버에 자동 로그인 기능 - 토크으로 로그인 되는지(뭔가 서버와 통신할 때 작업하는 부분)
 //            1500밀리초 이후에 실행될 코드
@@ -26,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
             startActivity(myIntent)
             finish()
 
-        },
+            },
 //            지연시킬 시간 - ms 단위로 작성
             1500) //지연 시간 milli second 1.5초
     }

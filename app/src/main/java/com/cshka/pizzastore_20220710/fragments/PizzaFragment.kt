@@ -29,7 +29,7 @@ class PizzaFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 //           viewPager에 의해 피자 프래그먼트가 사라질때, mList도 같이 clear되도록
-//        mList.clear()
+//        mList.clsear()
 
         Log.d("리스트 사이즈", mList.size.toString())
 
